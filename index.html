@@ -81,15 +81,12 @@ limitations under the License.
 <!--<script src="/__/firebase/7.17.1/firebase-messaging.js"></script>-->
 <!--<script src="/__/firebase/init.js"></script>-->
 
-<!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-messaging.js"></script>
-
-<!-- Add Firebase products that you want to use -->
-<script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-messaging.js"></script>
 
 <script>
+  // Your web app's Firebase configuration
   var firebaseConfig = {
     apiKey: "AIzaSyA7eYUQGSJIsLaBePdMFWG3OWzVTfkic1I",
     authDomain: "peca-live.firebaseapp.com",
@@ -100,9 +97,10 @@ limitations under the License.
     appId: "1:759961842358:web:d0a0fbbf9be60fd9c72c17",
     measurementId: "G-G1XZ8N5NP2"
   };
-
-  console.log('firebase.initializeApp(firebaseConfig);')
+  // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+
   // [START get_messaging_object]
   // Retrieve Firebase Messaging object.
   console.log('firebase.messaging();')

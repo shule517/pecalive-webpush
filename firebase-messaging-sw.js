@@ -31,13 +31,11 @@
 // Give the service worker access to Firebase Messaging.
 // Note that you can only use Firebase Messaging here, other Firebase libraries
 // are not available in the service worker.
-importScripts('https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js');
-importScripts('https://www.gstatic.com/firebasejs/7.17.1/firebase-messaging.js');
+importScripts('https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js');
+importScripts('https://www.gstatic.com/firebasejs/7.18.0/firebase-analytics.js');
+importScripts('https://www.gstatic.com/firebasejs/7.18.0/firebase-messaging.js');
 
-// Initialize the Firebase app in the service worker by passing in
-// your app's Firebase config object.
-// https://firebase.google.com/docs/web/setup#config-object
-firebase.initializeApp({
+var firebaseConfig = {
   apiKey: "AIzaSyA7eYUQGSJIsLaBePdMFWG3OWzVTfkic1I",
   authDomain: "peca-live.firebaseapp.com",
   databaseURL: "https://peca-live.firebaseio.com",
@@ -46,7 +44,10 @@ firebase.initializeApp({
   messagingSenderId: "759961842358",
   appId: "1:759961842358:web:d0a0fbbf9be60fd9c72c17",
   measurementId: "G-G1XZ8N5NP2"
-});
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+firebase.analytics();
 
 // Retrieve an instance of Firebase Messaging so that it can handle background
 // messages.

@@ -28,8 +28,6 @@ limitations under the License.
   <link rel="stylesheet" href="main.css">
 
   <link rel="manifest" href="/manifest.json">
-  <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
-
 </head>
 <body>
 <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
@@ -77,12 +75,8 @@ limitations under the License.
 <!-- Import and configure the Firebase SDK -->
 <!-- These scripts are made available when the app is served or deployed on Firebase Hosting -->
 <!-- If you do not serve/host your project using Firebase Hosting see https://firebase.google.com/docs/web/setup -->
-<!--<script src="/__/firebase/7.17.1/firebase-app.js"></script>-->
-<!--<script src="/__/firebase/7.17.1/firebase-messaging.js"></script>-->
-<!--<script src="/__/firebase/init.js"></script>-->
-
-<script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-messaging.js"></script>
+<script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-messaging.js"></script>
 
 <script>
   // Your web app's Firebase configuration
@@ -98,15 +92,16 @@ limitations under the License.
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
 
+<script>
   // [START get_messaging_object]
   // Retrieve Firebase Messaging object.
-  console.log('firebase.messaging();')
   const messaging = firebase.messaging();
   // [END get_messaging_object]
   // [START set_public_vapid_key]
   // Add the public key generated from the console here.
-  console.log('messaging.usePublicVapidKey()')
   messaging.usePublicVapidKey('BO_SdU8tSydJrHSwJgmxgM2_NPqSIhlcNwstIMyrEDnR9yKY97idGSwjn1mStZqQ12vTNKQAadHZsbMHlXpjXB8');
   // [END set_public_vapid_key]
 
@@ -191,7 +186,7 @@ limitations under the License.
       setTokenSentToServer(true);
     } else {
       console.log('Token already sent to server so won\'t send it again ' +
-              'unless it changes');
+          'unless it changes');
     }
 
   }

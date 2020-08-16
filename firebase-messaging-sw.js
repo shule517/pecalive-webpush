@@ -2,24 +2,37 @@
 // These scripts are made available when the app is served or deployed on Firebase Hosting
 // If you do not serve/host your project using Firebase Hosting see https://firebase.google.com/docs/web/setup
 
-self.onnotificationclick = function(event) {
-  console.log('On notification click: ', event.notification.tag);
+// self.onnotificationclick = function(event) {
+//   console.log('On notification click: ', event.notification.tag);
+//   event.notification.close();
+//
+//   // This looks to see if the current is already open and
+//   // focuses if it is
+//   event.waitUntil(clients.matchAll({
+//     type: "window"
+//   }).then(function(clientList) {
+//     for (var i = 0; i < clientList.length; i++) {
+//       var client = clientList[i];
+//       if (client.url == '/' && 'focus' in client)
+//         return client.focus();
+//     }
+//     if (clients.openWindow)
+//       return clients.openWindow('/');
+//   }));
+// };
+
+self.addEventListener('onnotificationclick', function(event) {
   event.notification.close();
 
-  // This looks to see if the current is already open and
-  // focuses if it is
-  event.waitUntil(clients.matchAll({
-    type: "window"
-  }).then(function(clientList) {
-    for (var i = 0; i < clientList.length; i++) {
-      var client = clientList[i];
-      if (client.url == '/' && 'focus' in client)
-        return client.focus();
-    }
-    if (clients.openWindow)
-      return clients.openWindow('/');
-  }));
-};
+  var promise = new Promise(function(resolve) {
+    setTimeout(resolve, 1000);
+  }).then(function() {
+    return clients.openWindow('http://peca.live');
+    // return clients.openWindow(event.data.locator);
+  });
+
+  event.waitUntil(promise);
+});
 
 
 importScripts('https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js');

@@ -162,14 +162,6 @@ self.addEventListener('push', function(event) {
   if (event.data) {
     data = event.data.json().data;
   }
-  // var title = data.title || "Something Has Happened";
-  // var body = data.body || "Here's something you might want to check out.";
-  // var icon = "images/new-notification.png";
-  //
-  // console.log(`[Service Worker] data: "${data}"`);
-  // console.log(`[Service Worker] data.data: "${data.data}"`);
-  // console.log(`[Service Worker] data.data.title: "${data.data.title}"`);
-  // console.log(`[Service Worker] title: "${title}"`);
 
   const title = data.title;
   const options = {
@@ -186,9 +178,14 @@ self.addEventListener('push', function(event) {
 self.addEventListener('notificationclick', function(event) {
   console.log('[Service Worker] Notification click Received.');
 
+  var data = {};
+  if (event.data) {
+    data = event.data.json().data;
+  }
+
   event.notification.close();
 
   event.waitUntil(
-    clients.openWindow('https://developers.google.com/web/')
+    clients.openWindow(data.url)
   );
 });

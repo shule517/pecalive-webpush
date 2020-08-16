@@ -156,13 +156,20 @@ const messaging = firebase.messaging();
 
 self.addEventListener('push', function(event) {
   console.log('[Service Worker] Push Received.');
-  // console.log(`[Service Worker] Push had this data: "${event.data.text()}"`);
+  console.log(`[Service Worker] Push had this data: "${event.data.text()}"`);
 
-  data = event.data.json();
+  var data = {};
+  if (event.data) {
+    data = event.data.json();
+  }
+  var title = data.title || "Something Has Happened";
+  var message = data.message || "Here's something you might want to check out.";
+  var icon = "images/new-notification.png";
+
   console.log(`[Service Worker] data: "${data}"`);
-  console.log(`[Service Worker] data.title: "${data.title}"`);
+  console.log(`[Service Worker] title: "${title}"`);
 
-  const title = data.title;
+  // const title = data.title;
   const options = {
     body: data.body,
     icon: data.icon, // Push通知メッセージのアイコン

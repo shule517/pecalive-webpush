@@ -156,13 +156,15 @@ const messaging = firebase.messaging();
 
 self.addEventListener('push', function(event) {
   console.log('[Service Worker] Push Received.');
-  // console.log(`[Service Worker] Push had this data: "${event.data.text()}"`);
 
-  const title = 'Push Codelab';
+  const title = event.data.title;
   const options = {
-    body: 'Yay it works.',
-    icon: 'images/icon.png',
-    badge: 'images/badge.png'
+    actions: [{action: 'http://peca.live/', title: 'test-title'}],
+    body: event.data.body,
+    icon: event.data.icon, // Push通知メッセージのアイコン
+    badge: event.data.badge, // スマホヘッダーのバッジ
+    vibrate: [300, 10, 100, 10, 100],
+    requireInteraction: true // タップするまで通知をずっと表示
   };
 
   event.waitUntil(self.registration.showNotification(title, options));

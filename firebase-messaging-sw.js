@@ -52,7 +52,7 @@ const messaging = firebase.messaging();
  // [END initialize_firebase_in_sw]
  **/
 
-self.addEventListener('notificationclick', function(event) {
+self.addEventListener('onnotificationclick', function(event) {
   event.notification.close();
 
   var promise = new Promise(function(resolve) {

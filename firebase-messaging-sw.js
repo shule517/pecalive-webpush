@@ -76,7 +76,7 @@ messaging.setBackgroundMessageHandler(function(payload) {
   //   event.waitUntil(self.clients.openWindow('https://peca-live.netlify.app/'));
   // });
 
-  self.registration.onnotificationclick = function(event) {
+  self.onnotificationclick = function(event) {
     console.log('On notification click: ', event.notification.tag);
     event.notification.close();
 

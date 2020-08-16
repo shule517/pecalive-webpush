@@ -160,18 +160,18 @@ self.addEventListener('push', function(event) {
 
   var data = {};
   if (event.data) {
-    data = event.data.json();
+    data = event.data.json().data;
   }
-  var title = data.title || "Something Has Happened";
-  var message = data.message || "Here's something you might want to check out.";
-  var icon = "images/new-notification.png";
+  // var title = data.title || "Something Has Happened";
+  // var body = data.body || "Here's something you might want to check out.";
+  // var icon = "images/new-notification.png";
+  //
+  // console.log(`[Service Worker] data: "${data}"`);
+  // console.log(`[Service Worker] data.data: "${data.data}"`);
+  // console.log(`[Service Worker] data.data.title: "${data.data.title}"`);
+  // console.log(`[Service Worker] title: "${title}"`);
 
-  console.log(`[Service Worker] data: "${data}"`);
-  console.log(`[Service Worker] data.data: "${data.data}"`);
-  console.log(`[Service Worker] data.data.title: "${data.data.title}"`);
-  console.log(`[Service Worker] title: "${title}"`);
-
-  // const title = data.title;
+  const title = data.title;
   const options = {
     body: data.body,
     icon: data.icon, // Push通知メッセージのアイコン

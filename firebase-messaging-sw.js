@@ -60,14 +60,13 @@ const messaging = firebase.messaging();
 messaging.setBackgroundMessageHandler(function(payload) {
   console.log('[firebase-messaging-sw.js] Received background message ', payload);
   // Customize notification here
-  const notificationTitle = 'テストだよ Background Message Title';
+  const notificationTitle = payload['title'];
   const notificationOptions = {
-    body: '本文だよ Background Message body.',
-    icon: '/pecalive.png',
-    badge: '/favicon.png',
-    image: '/live-chuu.png',
-    vibrate: [200, 100, 200, 100, 200, 100, 200],
-    requireInteraction: true
+    body: payload['body'],
+    icon: '/pecalive.png', // Push通知メッセージのアイコン
+    badge: '/favicon.png', // スマホヘッダーのバッジ
+    vibrate: [300, 10, 100, 10, 100],
+    requireInteraction: true // タップするまで通知をずっと表示
   };
 
   return self.registration.showNotification(notificationTitle, notificationOptions);

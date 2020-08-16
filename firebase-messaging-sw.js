@@ -114,6 +114,7 @@ messaging.setBackgroundMessageHandler(function(payload) {
   // Customize notification here
   const notificationTitle = payload.data.title;
   const notificationOptions = {
+    actions: [{action: 'http://peca.live/', title: 'test-title'}],
     body: payload.data.body,
     icon: payload.data.icon, // Push通知メッセージのアイコン
     badge: payload.data.badge, // スマホヘッダーのバッジ

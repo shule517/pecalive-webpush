@@ -28,18 +28,18 @@ self.addEventListener("notificationclick", function(event) {
 //   }));
 // };
 
-self.addEventListener('onnotificationclick', function(event) {
-  event.notification.close();
-
-  var promise = new Promise(function(resolve) {
-    setTimeout(resolve, 1000);
-  }).then(function() {
-    return clients.openWindow('http://peca.live');
-    // return clients.openWindow(event.data.locator);
-  });
-
-  event.waitUntil(promise);
-});
+// self.addEventListener('onnotificationclick', function(event) {
+//   event.notification.close();
+//
+//   var promise = new Promise(function(resolve) {
+//     setTimeout(resolve, 1000);
+//   }).then(function() {
+//     return clients.openWindow('http://peca.live');
+//     // return clients.openWindow(event.data.locator);
+//   });
+//
+//   event.waitUntil(promise);
+// });
 
 
 importScripts('https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js');

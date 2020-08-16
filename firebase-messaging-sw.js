@@ -2,8 +2,8 @@
 // These scripts are made available when the app is served or deployed on Firebase Hosting
 // If you do not serve/host your project using Firebase Hosting see https://firebase.google.com/docs/web/setup
 
-importScripts('https://www.gstatic.com/firebasejs/6.2.4/firebase-app.js');
-importScripts('https://www.gstatic.com/firebasejs/6.2.4/firebase-messaging.js');
+importScripts('https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js');
+importScripts('https://www.gstatic.com/firebasejs/7.18.0/firebase-messaging.js');
 
 // Your web app's Firebase configuration
 var firebaseConfig = {

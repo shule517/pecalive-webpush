@@ -159,6 +159,7 @@ self.addEventListener('push', function(event) {
   // console.log(`[Service Worker] Push had this data: "${event.data.text()}"`);
 
   data = event.data.json();
+  console.log(`[Service Worker] data: "${data}"`);
   console.log(`[Service Worker] data.title: "${data.title}"`);
 
   const title = data.title;

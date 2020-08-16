@@ -71,9 +71,9 @@ messaging.setBackgroundMessageHandler(function(payload) {
 
   // クリックしたら、URLに遷移
   self.registration.addEventListener('notificationclick', event => {
-    event.notification.close();
+    // event.notification.close();
     // event.waitUntil(self.clients.openWindow(payload.data.url));
-    event.waitUntil(self.clients.openWindow('http://peca.live'));
+    event.waitUntil(self.clients.openWindow('https://peca-live.netlify.app/'));
   });
 
   return self.registration.showNotification(notificationTitle, notificationOptions);

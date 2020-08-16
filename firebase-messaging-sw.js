@@ -66,6 +66,7 @@ messaging.setBackgroundMessageHandler(function(payload) {
     icon: '/pecalive.png',
     badge: '/pecalive.png',
     image: '/pecalive.png',
+    vibrate: [300, 10, 100, 10, 100],
     requireInteraction: true
   };
 

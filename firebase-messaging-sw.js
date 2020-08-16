@@ -104,50 +104,76 @@ const messaging = firebase.messaging();
 //
 //   event.waitUntil(promise);
 // });
+//
+// // If you would like to customize notifications that are received in the
+// // background (Web app is closed or not in browser focus) then you should
+// // implement this optional method.
+// // [START background_handler]
+// messaging.setBackgroundMessageHandler(function(payload) {
+//   console.log('[firebase-messaging-sw.js] Received background message ', payload);
+//   // Customize notification here
+//   const notificationTitle = payload.data.title;
+//   const notificationOptions = {
+//     actions: [{action: 'http://peca.live/', title: 'test-title'}],
+//     body: payload.data.body,
+//     icon: payload.data.icon, // Push通知メッセージのアイコン
+//     badge: payload.data.badge, // スマホヘッダーのバッジ
+//     vibrate: [300, 10, 100, 10, 100],
+//     requireInteraction: true // タップするまで通知をずっと表示
+//   };
+//
+//   // // クリックしたら、URLに遷移
+//   // self.registration.addEventListener('notificationclick', event => {
+//   //   // event.notification.close();
+//   //   // event.waitUntil(self.clients.openWindow(payload.data.url));
+//   //   event.waitUntil(self.clients.openWindow('https://peca-live.netlify.app/'));
+//   // });
+//
+//   // self.onnotificationclick = function(event) {
+//   //   console.log('On notification click: ', event.notification.tag);
+//   //   event.notification.close();
+//   //
+//   //   // This looks to see if the current is already open and
+//   //   // focuses if it is
+//   //   event.waitUntil(clients.matchAll({
+//   //     type: "window"
+//   //   }).then(function(clientList) {
+//   //     for (var i = 0; i < clientList.length; i++) {
+//   //       var client = clientList[i];
+//   //       if (client.url == '/' && 'focus' in client)
+//   //         return client.focus();
+//   //     }
+//   //     if (clients.openWindow)
+//   //       return clients.openWindow('http://peca.live');
+//   //   }));
+//   // };
+//
+//   return self.registration.showNotification(notificationTitle, notificationOptions);
+// });
+// // [END background_handler]
 
-// If you would like to customize notifications that are received in the
-// background (Web app is closed or not in browser focus) then you should
-// implement this optional method.
-// [START background_handler]
-messaging.setBackgroundMessageHandler(function(payload) {
-  console.log('[firebase-messaging-sw.js] Received background message ', payload);
-  // Customize notification here
-  const notificationTitle = payload.data.title;
-  const notificationOptions = {
-    actions: [{action: 'http://peca.live/', title: 'test-title'}],
-    body: payload.data.body,
-    icon: payload.data.icon, // Push通知メッセージのアイコン
-    badge: payload.data.badge, // スマホヘッダーのバッジ
-    vibrate: [300, 10, 100, 10, 100],
-    requireInteraction: true // タップするまで通知をずっと表示
+
+
+self.addEventListener('push', function(event) {
+  console.log('[Service Worker] Push Received.');
+  // console.log(`[Service Worker] Push had this data: "${event.data.text()}"`);
+
+  const title = 'Push Codelab';
+  const options = {
+    body: 'Yay it works.',
+    icon: 'images/icon.png',
+    badge: 'images/badge.png'
   };
 
-  // // クリックしたら、URLに遷移
-  // self.registration.addEventListener('notificationclick', event => {
-  //   // event.notification.close();
-  //   // event.waitUntil(self.clients.openWindow(payload.data.url));
-  //   event.waitUntil(self.clients.openWindow('https://peca-live.netlify.app/'));
-  // });
-
-  // self.onnotificationclick = function(event) {
-  //   console.log('On notification click: ', event.notification.tag);
-  //   event.notification.close();
-  //
-  //   // This looks to see if the current is already open and
-  //   // focuses if it is
-  //   event.waitUntil(clients.matchAll({
-  //     type: "window"
-  //   }).then(function(clientList) {
-  //     for (var i = 0; i < clientList.length; i++) {
-  //       var client = clientList[i];
-  //       if (client.url == '/' && 'focus' in client)
-  //         return client.focus();
-  //     }
-  //     if (clients.openWindow)
-  //       return clients.openWindow('http://peca.live');
-  //   }));
-  // };
-
-  return self.registration.showNotification(notificationTitle, notificationOptions);
+  event.waitUntil(self.registration.showNotification(title, options));
 });
-// [END background_handler]
+
+self.addEventListener('notificationclick', function(event) {
+  console.log('[Service Worker] Notification click Received.');
+
+  event.notification.close();
+
+  event.waitUntil(
+    clients.openWindow('https://developers.google.com/web/')
+  );
+});

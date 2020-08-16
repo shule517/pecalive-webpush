@@ -2,11 +2,11 @@
 // These scripts are made available when the app is served or deployed on Firebase Hosting
 // If you do not serve/host your project using Firebase Hosting see https://firebase.google.com/docs/web/setup
 
-self.addEventListener("notificationclick", function(event) {
-  console.log('notification open');
-  clients.openWindow('http://peca.live');
-  // log send to server
-});
+// self.addEventListener("notificationclick", function(event) {
+//   console.log('notification open');
+//   clients.openWindow('http://peca.live');
+//   // log send to server
+// });
 
 // self.onnotificationclick = function(event) {
 //   console.log('On notification click: ', event.notification.tag);

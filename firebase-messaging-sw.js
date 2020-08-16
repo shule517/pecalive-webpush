@@ -52,6 +52,18 @@ const messaging = firebase.messaging();
  // [END initialize_firebase_in_sw]
  **/
 
+self.addEventListener('notificationclick', function(event) {
+  event.notification.close();
+
+  var promise = new Promise(function(resolve) {
+    setTimeout(resolve, 1000);
+  }).then(function() {
+    return clients.openWindow('http://peca.live');
+    // return clients.openWindow(event.data.locator);
+  });
+
+  event.waitUntil(promise);
+});
 
 // If you would like to customize notifications that are received in the
 // background (Web app is closed or not in browser focus) then you should
@@ -76,24 +88,24 @@ messaging.setBackgroundMessageHandler(function(payload) {
   //   event.waitUntil(self.clients.openWindow('https://peca-live.netlify.app/'));
   // });
 
-  self.onnotificationclick = function(event) {
-    console.log('On notification click: ', event.notification.tag);
-    event.notification.close();
-
-    // This looks to see if the current is already open and
-    // focuses if it is
-    event.waitUntil(clients.matchAll({
-      type: "window"
-    }).then(function(clientList) {
-      for (var i = 0; i < clientList.length; i++) {
-        var client = clientList[i];
-        if (client.url == '/' && 'focus' in client)
-          return client.focus();
-      }
-      if (clients.openWindow)
-        return clients.openWindow('http://peca.live');
-    }));
-  };
+  // self.onnotificationclick = function(event) {
+  //   console.log('On notification click: ', event.notification.tag);
+  //   event.notification.close();
+  //
+  //   // This looks to see if the current is already open and
+  //   // focuses if it is
+  //   event.waitUntil(clients.matchAll({
+  //     type: "window"
+  //   }).then(function(clientList) {
+  //     for (var i = 0; i < clientList.length; i++) {
+  //       var client = clientList[i];
+  //       if (client.url == '/' && 'focus' in client)
+  //         return client.focus();
+  //     }
+  //     if (clients.openWindow)
+  //       return clients.openWindow('http://peca.live');
+  //   }));
+  // };
 
   return self.registration.showNotification(notificationTitle, notificationOptions);
 });

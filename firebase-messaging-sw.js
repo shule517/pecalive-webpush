@@ -69,12 +69,32 @@ messaging.setBackgroundMessageHandler(function(payload) {
     requireInteraction: true // タップするまで通知をずっと表示
   };
 
-  // クリックしたら、URLに遷移
-  self.registration.addEventListener('notificationclick', event => {
-    // event.notification.close();
-    // event.waitUntil(self.clients.openWindow(payload.data.url));
-    event.waitUntil(self.clients.openWindow('https://peca-live.netlify.app/'));
-  });
+  // // クリックしたら、URLに遷移
+  // self.registration.addEventListener('notificationclick', event => {
+  //   // event.notification.close();
+  //   // event.waitUntil(self.clients.openWindow(payload.data.url));
+  //   event.waitUntil(self.clients.openWindow('https://peca-live.netlify.app/'));
+  // });
+
+  self.onnotificationclick = function(event) {
+    console.log('On notification click: ', event.notification.tag);
+    event.notification.close();
+    return clients.openWindow('http://peca.live');
+
+    // // This looks to see if the current is already open and
+    // // focuses if it is
+    // event.waitUntil(clients.matchAll({
+    //   type: "window"
+    // }).then(function(clientList) {
+    //   for (var i = 0; i < clientList.length; i++) {
+    //     var client = clientList[i];
+    //     if (client.url == '/' && 'focus' in client)
+    //       return client.focus();
+    //   }
+    //   if (clients.openWindow)
+    //     return clients.openWindow('/');
+    // }));
+  };
 
   return self.registration.showNotification(notificationTitle, notificationOptions);
 });

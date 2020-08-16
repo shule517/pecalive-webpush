@@ -156,10 +156,10 @@ const messaging = firebase.messaging();
 
 self.addEventListener('push', function(event) {
   console.log('[Service Worker] Push Received.');
+  console.log(`[Service Worker] Push had this data: "${event.data.text()}"`);
 
   const title = event.data.title;
   const options = {
-    actions: [{action: 'http://peca.live/', title: 'test-title'}],
     body: event.data.body,
     icon: event.data.icon, // Push通知メッセージのアイコン
     badge: event.data.badge, // スマホヘッダーのバッジ

@@ -64,7 +64,7 @@ messaging.setBackgroundMessageHandler(function(payload) {
   const notificationOptions = {
     body: '本文だよ Background Message body.',
     icon: '/pecalive.png',
-    badge: '/pecalive.png',
+    badge: '/favicon.png',
     image: '/pecalive.png',
     vibrate: [300, 10, 100, 10, 100],
     requireInteraction: true

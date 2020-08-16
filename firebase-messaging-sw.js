@@ -168,6 +168,7 @@ self.addEventListener('push', function(event) {
     body: data.body,
     icon: data.icon, // Push通知メッセージのアイコン
     badge: data.badge, // スマホヘッダーのバッジ
+    data: { url: data.url },
     vibrate: [300, 10, 100, 10, 100],
     requireInteraction: true // タップするまで通知をずっと表示
   };
@@ -177,7 +178,8 @@ self.addEventListener('push', function(event) {
 
 self.addEventListener('notificationclick', function(event) {
   console.log('[Service Worker] Notification click Received.');
-  console.log(`[Service Worker] Push had this data: "${event.notification.data}"`);
+  console.log(`[Service Worker] event.notification.data: "${event.notification.data}"`);
+  console.log(`[Service Worker] event.data: "${event.data}"`);
 
   // var data = {};
   // if (event.data) {

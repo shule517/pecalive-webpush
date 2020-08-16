@@ -65,6 +65,7 @@ messaging.setBackgroundMessageHandler(function(payload) {
     body: '本文だよ Background Message body.',
     icon: '/pecalive.png',
     badge: '/pecalive.png',
+    image: '/pecalive.png',
     requireInteraction: true
   };
 

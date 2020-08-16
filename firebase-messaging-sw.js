@@ -177,16 +177,16 @@ self.addEventListener('push', function(event) {
 
 self.addEventListener('notificationclick', function(event) {
   console.log('[Service Worker] Notification click Received.');
-  console.log(`[Service Worker] Push had this data: "${event.data.text()}"`);
+  console.log(`[Service Worker] Push had this data: "${event.data}"`);
 
-  var data = {};
-  if (event.data) {
-    data = event.data.json().data;
-  }
+  // var data = {};
+  // if (event.data) {
+  //   data = event.data.json().data;
+  // }
 
   event.notification.close();
 
   event.waitUntil(
-    clients.openWindow(data.url)
+    clients.openWindow(event.data.url)
   );
 });

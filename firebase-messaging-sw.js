@@ -167,6 +167,8 @@ self.addEventListener('push', function(event) {
   var icon = "images/new-notification.png";
 
   console.log(`[Service Worker] data: "${data}"`);
+  console.log(`[Service Worker] data.data: "${data.data}"`);
+  console.log(`[Service Worker] data.data.title: "${data.data.title}"`);
   console.log(`[Service Worker] title: "${title}"`);
 
   // const title = data.title;

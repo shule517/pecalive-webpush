@@ -60,9 +60,9 @@ const messaging = firebase.messaging();
 messaging.setBackgroundMessageHandler(function(payload) {
   console.log('[firebase-messaging-sw.js] Received background message ', payload);
   // Customize notification here
-  const notificationTitle = payload['title'];
+  const notificationTitle = payload.notification.title;
   const notificationOptions = {
-    body: payload['body'],
+    body: payload.notification.body,
     icon: '/pecalive.png', // Push通知メッセージのアイコン
     badge: '/favicon.png', // スマホヘッダーのバッジ
     vibrate: [300, 10, 100, 10, 100],

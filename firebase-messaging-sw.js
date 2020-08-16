@@ -179,6 +179,7 @@ self.addEventListener('push', function(event) {
 self.addEventListener('notificationclick', function(event) {
   console.log('[Service Worker] Notification click Received.');
   console.log(`[Service Worker] event.notification.data: "${event.notification.data}"`);
+  console.log(`[Service Worker] event.notification.data.url: "${event.notification.data.url}"`);
   console.log(`[Service Worker] event.data: "${event.data}"`);
 
   // var data = {};

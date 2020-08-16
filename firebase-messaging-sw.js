@@ -157,6 +157,8 @@ const messaging = firebase.messaging();
 self.addEventListener('push', function(event) {
   console.log('[Service Worker] Push Received.');
   console.log(`[Service Worker] Push had this data: "${event.data.text()}"`);
+  console.log(`[Service Worker] event.data.data.title: "${event.data.data.title}"`);
+  console.log(`[Service Worker] event.data.data.text: "${event.data.data.text()}"`);
 
   const title = event.data.title;
   const options = {

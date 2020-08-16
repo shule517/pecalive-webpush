@@ -157,16 +157,15 @@ const messaging = firebase.messaging();
 self.addEventListener('push', function(event) {
   console.log('[Service Worker] Push Received.');
   // console.log(`[Service Worker] Push had this data: "${event.data.text()}"`);
-  console.log(`[Service Worker] Push had this data: "${event.data}"`);
-  console.log(`[Service Worker] event.data.title: "${event.data.title}"`);
-  console.log(`[Service Worker] event.data.data: "${event.data.data}"`);
-  console.log(`[Service Worker] event.data.data.text: "${event.data.data.text()}"`);
 
-  const title = event.data.title;
+  data = event.data.json();
+  console.log(`[Service Worker] data.title: "${data.title}"`);
+
+  const title = data.title;
   const options = {
-    body: event.data.body,
-    icon: event.data.icon, // Push通知メッセージのアイコン
-    badge: event.data.badge, // スマホヘッダーのバッジ
+    body: data.body,
+    icon: data.icon, // Push通知メッセージのアイコン
+    badge: data.badge, // スマホヘッダーのバッジ
     vibrate: [300, 10, 100, 10, 100],
     requireInteraction: true // タップするまで通知をずっと表示
   };

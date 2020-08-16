@@ -170,10 +170,6 @@ limitations under the License.
 
 
   function showToken(currentToken) {
-    console.log("currentToken: " + currentToken)
-    console.log("window.location.search: " + window.location.search)
-    console.log("window.location.search.substring(1): " + window.location.search.substring(1))
-
     // Show token in console and UI.
     const tokenElement = document.querySelector('#token');
     tokenElement.textContent = currentToken;
@@ -186,6 +182,8 @@ limitations under the License.
     if (!isTokenSentToServer()) {
       console.log('Sending token to server...');
       // TODO(developer): Send the current token to your server.
+      console.log("currentToken: " + currentToken)
+      console.log("window.location.search.substring(1): " + window.location.search.substring(1))
       setTokenSentToServer(true);
     } else {
       console.log('Token already sent to server so won\'t send it again ' +

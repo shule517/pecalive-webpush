@@ -4,8 +4,7 @@
 
 self.addEventListener("notificationclick", function(event) {
   console.log('notification open');
-  var message = event.notification.data.FCM_MSG;
-  console.log(message);
+  clients.openWindow('http://peca.live');
   // log send to server
 });
 

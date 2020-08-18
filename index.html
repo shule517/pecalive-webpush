@@ -185,14 +185,13 @@ limitations under the License.
       console.log("currentToken: " + currentToken)
       console.log("window.location.search.substring(1): " + window.location.search.substring(1))
       setTokenSentToServer(true);
-
-      // ぺからいぶ！に画面遷移する
-      window.location.href = `http://peca.live/user_devices?token=${currentToken}`;
     } else {
       console.log('Token already sent to server so won\'t send it again ' +
           'unless it changes');
     }
 
+    // ぺからいぶ！に画面遷移する
+    window.location.href = `http://peca.live/user_devices?token=${currentToken}`;
   }
 
   function isTokenSentToServer() {

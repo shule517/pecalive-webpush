@@ -206,6 +206,8 @@ limitations under the License.
   }
 
   function showHideDiv(divId, show) {
+    return; // キーの表示などを非表示にする
+
     const div = document.querySelector('#' + divId);
     if (show) {
       div.style = 'display: visible';
